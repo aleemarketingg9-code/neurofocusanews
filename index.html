@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Why Every Productivity System Has Failed Me — NeuroHealth</title>
+<meta name="description" content="143,000 women finally broke the pattern in 30 days. A Norwegian researcher finally explained why nothing else ever worked."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #f7f4ef;
+  color: #1a1a1a;
+  font-size: 17px;
+  line-height: 1.82;
+}
+
+:root {
+  --teal:       #1a7a6e;
+  --teal-dark:  #0d5a52;
+  --teal-light: #e8f7f5;
+  --navy:       #0f2a4a;
+  --amber:      #f59e0b;
+  --amber-dark: #d97706;
+  --border:     #e0dbd4;
+  --bg:         #f7f4ef;
+  --muted:      #666;
+}
+
+/* TOP BAR */
+.top-bar {
+  background: var(--navy);
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 10px rgba(0,0,0,.4);
+}
+.logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 21px;
+  font-weight: 900;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -.5px;
+}
+.logo span { color: var(--teal); }
+
+/* LAYOUT */
+.page-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+.main { flex: 1; min-width: 0; padding: 26px 0 72px; }
+.sidebar-col { width: 275px; flex-shrink: 0; padding: 26px 0 72px; }
+.sidebar-sticky { position: sticky; top: 68px; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.breadcrumb a { color: var(--muted); text-decoration: none; }
+.breadcrumb .sep { margin: 0 6px; }
+
+/* HEADLINES */
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 29px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #111;
+  margin-bottom: 18px;
+}
+.subheadline {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.45;
+  margin-bottom: 18px;
+  color: #111;
+}
+.subheadline .hi {
+  background: linear-gradient(transparent 58%, rgba(26,122,110,.2) 58%);
+}
+
+/* BYLINE */
+.ratings-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-family: 'Inter', sans-serif;
+}
+.stars-amber { color: var(--amber); font-size: 22px; letter-spacing: 1px; }
+.rating-count { font-size: 14px; font-weight: 800; color: var(--teal); }
+.byline-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.author-pic {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  border: 2px solid var(--teal);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.author-pic img { width: 100%; height: 100%; object-fit: cover; }
+.byline-text { font-family: 'Inter', sans-serif; font-size: 14px; }
+.byline-name { font-weight: 700; color: #222; }
+.byline-date { color: var(--muted); }
+
+/* DUAL IMAGE */
+.dual-image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 34px;
+  overflow: hidden;
+}
+.img-slot {
+  height: 255px;
+  background: #e8e4de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.img-slot img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.img-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,.52);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 4px 10px;
+  pointer-events: none;
+}
+
+/* IMAGE PLACEHOLDER */
+.image-placeholder {
+  width: 100%;
+  max-width: 320px;
+  height: 200px;
+  background: #f0ede8;
+  border: 2px dashed #c8c2ba;
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* ARTICLE BODY */
+.article-body p {
+  margin-bottom: 20px;
+  color: #222;
+  line-height: 1.85;
+}
+.article-body p:last-child { margin-bottom: 0; }
+.article-body h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--navy);
+  margin: 44px 0 16px;
+  line-height: 1.25;
+}
+.article-body strong { color: #111; font-weight: 700; }
+.article-body em { font-style: italic; color: #444; }
+
+/* PULLQUOTE */
+.pullquote {
+  border-left: 4px solid var(--teal);
+  background: var(--teal-light);
+  padding: 20px 26px;
+  margin: 28px 0;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--navy);
+  line-height: 1.65;
+}
+.pullquote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-style: normal;
+  color: var(--teal-dark);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+/* RESEARCHER BOX */
+.researcher-box {
+  background: #eff4fb;
+  border: 1px solid #c5d5e8;
+  padding: 22px;
+  margin: 28px 0;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.researcher-pic {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: #c8d8e8;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.researcher-pic img { width: 100%; height: 100%; object-fit: cover; }
+.researcher-info h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.researcher-cred {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.researcher-info p { font-size: 15px; margin-bottom: 0; font-style: italic; }
+
+/* DIARY */
+.diary-entry {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 22px 24px;
+  margin: 22px 0;
+}
+.diary-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.diary-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+.diary-entry p { font-size: 16px; margin-bottom: 14px; color: #333; }
+.diary-entry p:last-child { margin-bottom: 0; }
+.diary-entry em { color: var(--teal-dark); font-style: italic; display: block; margin-top: 6px; }
+
+/* FREEZE TYPES */
+.freeze-section {
+  background: #fff;
+  border: 2px solid var(--teal);
+  padding: 28px;
+  margin: 40px 0;
+}
+.freeze-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.freeze-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.freeze-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.freeze-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+}
+.freeze-icon { font-size: 22px; margin-bottom: 7px; }
+.freeze-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 5px;
+}
+.freeze-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #444;
+  line-height: 1.55;
+}
+.freeze-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* CTA BUTTON */
+.cta-btn {
+  display: block;
+  background: var(--amber);
+  color: #111;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  padding: 18px 24px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.cta-btn:hover { background: var(--amber-dark); }
+
+/* TEAL VARIANT BUTTON */
+.cta-btn-teal {
+  display: block;
+  background: var(--teal);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  padding: 16px 24px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.cta-btn-teal:hover { background: var(--teal-dark); }
+
+/* TESTIMONIALS */
+.testimonial {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+  margin: 14px 0;
+  display: flex;
+  gap: 14px;
+}
+.test-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  border: 2px solid var(--teal);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 900;
+  color: var(--teal-dark);
+  font-family: 'Inter', sans-serif;
+}
+.test-body { flex: 1; }
+.test-name { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; color: var(--navy); }
+.test-meta { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.test-stars { color: var(--amber); font-size: 13px; margin-bottom: 7px; }
+.test-text { font-size: 15px; color: #333; line-height: 1.65; font-style: italic; }
+
+/* GUARANTEE STRIP */
+.guarantee-strip {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 28px 20px 24px;
+  margin: 28px 0;
+  text-align: center;
+}
+.guarantee-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.guarantee-items {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.guarantee-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.guarantee-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--teal);
+  background: var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--teal);
+  font-weight: 900;
+  font-family: 'Inter', sans-serif;
+}
+.guarantee-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--navy);
+  text-align: center;
+  line-height: 1.4;
+}
+.guarantee-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+@media (max-width: 480px) { .guarantee-items { gap: 22px; } }
+.guarantee-comparison-img {
+  width: 100%;
+  max-width: 580px;
+  display: block;
+  margin: 0 auto 24px;
+  height: auto;
+}
+.guarantee-badge-img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  display: block;
+}
+
+/* URGENCY BOX */
+.urgency-box {
+  background: var(--amber);
+  border: 3px solid var(--amber-dark);
+  padding: 22px 28px;
+  margin: 32px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #111;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.65;
+  box-shadow: 0 4px 18px rgba(245,158,11,.35);
+}
+.urgency-box strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  margin-bottom: 6px;
+}
+
+/* COMMENTS */
+.comments-section {
+  margin: 44px 0 20px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.comments-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+.comment {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.comment:last-child { border-bottom: none; }
+.c-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 12px; font-weight: 800;
+  font-family: 'Inter', sans-serif;
+}
+.c-handle {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--teal-dark);
+  margin-bottom: 5px;
+}
+.c-text { font-size: 15px; color: #333; line-height: 1.65; }
+.c-likes {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+
+/* DISCLAIMER */
+.disclaimer {
+  background: #f0ede8;
+  border-top: 1px solid var(--border);
+  padding: 18px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.65;
+  margin-top: 36px;
+}
+
+/* FLOATING BOTTOM BAR */
+.floating-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a4f9c;
+  color: #fff;
+  padding: 13px 70px 13px 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  z-index: 500;
+  box-shadow: 0 -3px 14px rgba(0,0,0,.3);
+}
+.floating-bar-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.floating-bar-btn {
+  background: var(--amber);
+  color: #111;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 10px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  white-space: nowrap;
+  transition: background .15s;
+  flex-shrink: 0;
+}
+.floating-bar-btn:hover { background: var(--amber-dark); }
+.floating-bar-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.7);
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 6px;
+}
+
+/* SIDEBAR */
+.sb-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+.sb-fire { font-size: 24px; text-align: center; display: block; margin-bottom: 4px; }
+.sb-limited {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--teal);
+  text-align: center;
+}
+.sb-discount {
+  font-family: 'Inter', sans-serif;
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 2px;
+}
+.sb-new-users {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 14px;
+}
+.sb-btn {
+  display: block;
+  background: var(--amber);
+  color: #111;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+  padding: 13px 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  margin-bottom: 20px;
+}
+.sb-btn:hover { background: var(--amber-dark); }
+.sb-reviews-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.sb-out-of {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+  margin-bottom: 6px;
+}
+.sb-stars { font-size: 24px; color: var(--amber); text-align: center; margin-bottom: 4px; }
+.sb-count { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); text-align: center; margin-bottom: 14px; }
+.star-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}
+.star-lbl { width: 48px; color: var(--teal-dark); font-weight: 700; flex-shrink: 0; }
+.star-bar { flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+.star-fill { height: 100%; background: var(--amber); border-radius: 4px; }
+.star-pct { width: 30px; color: var(--muted); text-align: right; flex-shrink: 0; }
+.sb-features { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 10px; }
+.sb-feat-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-bottom: 8px;
+}
+.feat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f0ede8;
+}
+.feat-row:last-child { border-bottom: none; }
+.feat-lbl { color: #444; }
+.feat-score { font-weight: 900; color: var(--teal-dark); }
+.feat-stars { color: var(--amber); font-size: 11px; }
+
+/* MECHANISM CARDS */
+.mechanism-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 28px 0 24px;
+}
+.mechanism-card {
+  padding: 22px 20px;
+  border-radius: 3px;
+}
+.problem-card { background: var(--navy); color: #fff; }
+.solution-card { background: var(--teal-dark); color: #fff; }
+.mechanism-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.problem-card .mechanism-label { color: #f472b6; }
+.solution-card .mechanism-label { color: #6ee7b7; }
+.mechanism-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.mechanism-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  opacity: .9;
+}
+@media (max-width: 560px) { .mechanism-section { grid-template-columns: 1fr; } }
+
+/* RESPONSIVE */
+@media (max-width: 780px) {
+  .page-wrap { flex-direction: column; }
+  .sidebar-col { width: 100%; padding-top: 0; }
+  .sidebar-sticky { position: static; }
+  h1 { font-size: 23px; }
+  .subheadline { font-size: 16px; }
+  .freeze-grid { grid-template-columns: 1fr; }
+  .floating-bar { flex-direction: column; gap: 8px; padding: 12px 50px 12px 16px; }
+  .floating-bar-text { font-size: 13px; text-align: center; white-space: normal; }
+  .floating-bar-btn { width: 100%; text-align: center; }
+}
+@media (max-width: 480px) {
+  h1 { font-size: 20px; }
+  .img-slot { height: 150px; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <a href="#" class="logo">Neuro<span>↑</span>Health</a>
+</header>
+
+<div class="page-wrap">
+
+<main class="main">
+
+  <nav class="breadcrumb">
+    <a href="#">Home</a><span class="sep">›</span>
+    <a href="#">Health</a><span class="sep">›</span>
+    Wellness
+  </nav>
+
+  <h1>Why Every Productivity System Has Failed Me — Until A Norwegian Researcher Finally Discovered The Real Reason High-Achieving Women Can't Stop Procrastinating</h1>
+
+  <div class="subheadline">
+    <span class="hi">143,000 Women Who "Knew Exactly What To Do But Still Couldn't Start" Finally Broke The Pattern In 30 Days</span> — Without Willpower, Without A Diagnosis, Without Overhauling Their Life
+  </div>
+
+  <div class="ratings-row">
+    <span class="stars-amber">★★★★½</span>
+    <span class="rating-count">4,552 Ratings</span>
+  </div>
+
+  <div class="byline-row">
+    <div class="author-pic">
+      <img src="images/author-brennan.webp" alt="Dr. Sarah Brennan" onerror="this.style.display='none';this.parentNode.innerHTML='👩';" />
+    </div>
+    <div class="byline-text">
+      <div class="byline-name">By: Dr. Sarah Brennan | Behavioral Neuroscience Writer</div>
+      <div class="byline-date">Updated yesterday</div>
+    </div>
+  </div>
+
+  <div class="dual-image">
+    <div class="img-slot">
+      <img src="images/after-focused.webp" alt="After — focused, organized, in control" />
+    </div>
+    <div class="img-slot">
+      <img src="images/before-stressed.webp" alt="Before — frozen, overwhelmed, avoiding" />
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p>I had 9 things on my list that Monday morning.</p>
+
+    <p>The quarterly report. The email I'd been avoiding for 11 days. The presentation I'd promised to finish "this weekend" — three weekends in a row.</p>
+
+    <p>I knew exactly what I needed to do.</p>
+
+    <p>I opened Netflix.</p>
+
+    <p>Three hours later, I was on the couch — not resting, not actually watching — just existing in that specific paralysis that's worse than laziness, because you can see yourself doing it and you still can't stop.</p>
+
+    <p>This was my life. Not the life people saw.</p>
+
+    <p>They saw the promotion. The apartment that looked clean (because I'd scramble-cleaned for three hours before anyone came over). The projects I appeared to handle effortlessly.</p>
+
+    <p>What they didn't see: 34 open browser tabs, none of them the thing I was supposed to be doing. Alarms I set, snoozed, and eventually disabled. A to-do list that had been on the same page for six weeks.</p>
+
+    <p>I wasn't lazy. I knew I wasn't lazy — I'd hyperfocus for 14 hours straight when something actually interested me.</p>
+
+    <p>I just couldn't start the things I needed to start.</p>
+
+    <p>For six years, I tried to fix this.</p>
+
+    <p>Pomodoro Technique. Notion databases. Time blocking. Atomic Habits — twice. Morning routines. Cold showers. Accountability partners. A whiteboard. Two different planners from the same Instagram ad.</p>
+
+    <p>Each one worked for exactly 9 to 14 days.</p>
+
+    <p>Then I'd slip. Then I'd feel ashamed. Then I'd try something new.</p>
+
+    <p>I thought I had a discipline problem.</p>
+
+    <p>Then a researcher from Oslo told me something that changed everything.</p>
+
+    <h2>The University of Oslo Study That Made Me Reconsider Everything I Thought I Knew About Procrastination</h2>
+
+    <p>It started with a podcast episode I almost skipped.</p>
+
+    <p>The guest was Dr. Lena Hoffmann, a behavioral neuroscience researcher at the University of Oslo. She'd spent 12 years studying a specific pattern in high-achieving adults — people who had every resource, every motivation, every external reason to perform — and still couldn't initiate the work that mattered most to them.</p>
+
+    <p>She called it the Executive Freeze Loop.</p>
+
+    <div class="researcher-box">
+      <div class="researcher-pic">
+        <img src="images/researcher-hoffmann.webp" alt="Dr. Lena Hoffmann" onerror="this.style.display='none';this.parentNode.innerHTML='👩‍🔬';" />
+      </div>
+      <div class="researcher-info">
+        <h4>Dr. Lena Hoffmann</h4>
+        <div class="researcher-cred">Behavioral Neuroscience Lab · University of Oslo, Norway<br/>12 years researching executive dysfunction in high-achieving adults</div>
+        <p>"The people who come to us are almost always intelligent, ambitious, and extremely self-aware. They know exactly what they should be doing. And that's precisely the problem."</p>
+      </div>
+    </div>
+
+    <p>I almost stopped listening. But then she said something that made me sit up.</p>
+
+    <div class="pullquote">
+      "When a brain with executive dysfunction tries to initiate a high-stakes task, it enters a feedback loop. The harder you push, the more frozen you become. Willpower doesn't solve this — it actively makes it worse."
+      <cite>— Dr. Lena Hoffmann, University of Oslo</cite>
+    </div>
+
+    <p>She explained something I'd never encountered before: Norway has the highest documented rates of executive dysfunction and ADHD in the developed world. But it also has the lowest rates of stimulant medication use. For 40 years, Norwegian behavioral researchers have been refining non-pharmaceutical protocols — interventions specifically designed to interrupt the Freeze Loop at the neural level, without medication, without years of traditional therapy.</p>
+
+    <p>Their research data was striking: <strong>87% of participants showed measurable improvement in task initiation within 21 days.</strong></p>
+
+    <p>Not from trying harder. From training the brain differently.</p>
+
+    <h2>Why "Just Start" Is The Worst Advice Anyone Can Give You</h2>
+
+    <p>Here's what that research revealed — and why it explains every system you've ever abandoned.</p>
+
+    <p>Your brain isn't missing discipline. It isn't broken. It's stuck in a pattern.</p>
+
+    <p>When your brain perceives a task as important, complex, or high-stakes, it triggers a stress response. In most brains, that stress sharpens focus and drives action. But in brains with a lower activation baseline — which researchers estimate affects roughly 1 in 4 high-achieving women under 45, the majority of whom have never been formally diagnosed — the stress response doesn't activate focus.</p>
+
+    <p>It activates freeze.</p>
+
+    <p>The part of your brain responsible for starting tries to initiate. But the part that reads "important" as "threat" overrides it. With that override in place, starting becomes neurologically near-impossible.</p>
+
+    <p>That's what makes the pattern so disorienting. When the freeze is happening, your brain isn't failing. It's working. When you reorganize the desk instead of starting, make tea, open another tab — those aren't character failures. That's your brain executing a protection response it was built for. It registered the task as high-stakes. It's keeping you safe. The problem is that the threat isn't real. And that kind of pattern responds to a very specific kind of intervention.</p>
+
+    <p>This is why the Pomodoro Technique works for 12 days and then collapses. This is why Atomic Habits changed your life for two weeks. This is why you have seven different productivity systems and zero that actually stuck.</p>
+
+    <p>You weren't failing the systems. The systems were failing to address the actual problem.</p>
+
+    <h2 id="systemsSection">What Every System You've Tried Has In Common</h2>
+
+    <p>Every solution you've tried — every book, course, system, and app — shared the same hidden assumption: fix the outside, and the inside will follow. The clean inbox. The finished report. The consistent habit.</p>
+
+    <p>None of them can reach the neural pattern underneath. Because the problem was never external.</p>
+
+    <div class="mechanism-section">
+      <div class="mechanism-card problem-card">
+        <div class="mechanism-title">Why Nothing Has Worked</div>
+        <div class="mechanism-body">Your brain reads high-stakes tasks as threats. When it does, the starting pathway goes offline. The harder you push, the stronger the freeze becomes. No external system, habit tracker, or productivity method can change a neural pattern from the outside.</div>
+      </div>
+      <div class="mechanism-card solution-card">
+        <div class="mechanism-title">The Only Path That Changes It</div>
+        <div class="mechanism-body">Triggering a micro-completion before the task primes the starting pathway — bypassing the threat response entirely. This is the only intervention that works at the neural level. Not after the freeze. Not around it. Before it activates.</div>
+      </div>
+    </div>
+
+    <p>This is why therapy can help — but takes months and costs $150 to $300 a session to get there. It's why courses and books teach you the right concept at the wrong moment. It's why free apps and reminders don't work: they tell you to start, without addressing why starting feels impossible.</p>
+
+    <p>And it's why willpower doesn't just fail — it actively makes the freeze stronger. Pushing harder signals to your brain that this task is genuinely dangerous. So it protects you harder.</p>
+
+    <p>What was needed was something that could deliver this protocol at the exact moment the pattern activates. At 8 AM on a Tuesday, when the email has been open for three minutes and you haven't typed a word. Personalized to the specific freeze type that shows up in your brain. Built by the researchers who spent 12 years mapping exactly how this works.</p>
+
+    <p>That's what Dr. Hoffmann's team built. Not a book. Not a course. Not another reminder app.</p>
+
+    <p>They called it NeuroFocus.</p>
+
+    <h2>What Actually Happened When I Started Using It</h2>
+
+    <div class="diary-entry">
+      <div class="diary-label">Day 1</div>
+      <div class="diary-title">The 90-Second Exercise That Felt Almost Too Simple</div>
+      <p>The app asked me to rate my current stress: 1 to 10.</p>
+      <p>Then it gave me one task. One.</p>
+      <p>"Name three things in your immediate environment right now."</p>
+      <p>That's it. 90 seconds.</p>
+      <p>But then it explained why.</p>
+      <p>"Your brain just completed a task. That pathway is now primed for the next 4 to 6 hours. Now — what's the one thing you've been avoiding most?"</p>
+      <p>I typed: "The client proposal."</p>
+      <p>"Good. Here's your entry point: Open the document. Don't write anything. Just open it."</p>
+      <p>I did. And then, almost without deciding to, I wrote a sentence. Then another.</p>
+      <em>Something had shifted. I didn't understand it yet. But I felt it.</em>
+
+      <img src="images/app-day1.webp" alt="NeuroFocus app — Day 1 session" style="width:100%;max-width:380px;height:auto;display:block;margin:18px auto 4px;" />
+    </div>
+
+    <div class="diary-entry">
+      <div class="diary-label">Day 3</div>
+      <div class="diary-title">I Caught Myself Before The Freeze Started</div>
+      <p>I was about to open social media instead of starting a project. An old reflex — one I'd never been able to interrupt before.</p>
+      <p>And I noticed it. Not with willpower. The way you notice a pattern once someone has pointed it out and named it for you.</p>
+      <p>"Oh. This is the Freeze starting."</p>
+      <p>I did the 90-second activation. Then I started the project.</p>
+      <p>It wasn't magic. But something was different in a way I didn't have words for yet.</p>
+    </div>
+
+    <div class="diary-entry">
+      <div class="diary-label">Day 7</div>
+      <div class="diary-title">The Streak Started Meaning Something</div>
+      <p>The app tracked my completion rate. Seven days in a row felt significant for the first time in years — not because someone was watching, but because I could feel my brain associating "starting" with "good."</p>
+      <p>I sent the email I'd been avoiding for 11 days. Not because I had more time. Because the freeze didn't arrive.</p>
+      <p>The app's check-in asked: "How many times this week did you start something within 5 minutes of intending to?"</p>
+      <p>Week 1 answer: once. Week 3 answer: every day.</p>
+    </div>
+
+    <div class="diary-entry">
+      <div class="diary-label">Week 3</div>
+      <div class="diary-title">The Pattern Rewired Quietly</div>
+      <p>I stopped thinking about starting. I just started.</p>
+      <p>My inbox went from 280 unread to under 15. My desk stayed clear — not because I had a cleaning system, but because I stopped accumulating things while I froze.</p>
+      <p>My manager mentioned I'd seemed "different" lately. More responsive. Better follow-through. I hadn't told anyone what I was doing.</p>
+
+      <img src="images/app-week3.webp" alt="NeuroFocus app — Week 3 progress" style="width:100%;max-width:380px;height:auto;display:block;margin:18px auto 4px;" />
+    </div>
+
+    <div class="diary-entry">
+      <div class="diary-label">Week 4</div>
+      <div class="diary-title">The Results I Wasn't Looking For</div>
+      <p>I thought I'd get more done. I did.</p>
+      <p>But I also got better sleep. More energy. The ability to be present in a conversation without running through my mental to-do list the entire time.</p>
+      <p>My closest friend noticed before I did: "You seem less frantic. Like you're actually here when we talk."</p>
+      <p>10 minutes a day changed how my brain operates. Not my schedule. Not my habits. My actual patterns.</p>
+    </div>
+
+    <p>Here's what other users are saying:</p>
+
+    <div class="testimonial">
+      <div class="test-avatar">M</div>
+      <div class="test-body">
+        <div class="test-name">Mia T.</div>
+        <div class="test-meta">Marketing Director, Chicago · Verified Purchase</div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"I've suspected executive dysfunction since college. Never got diagnosed. NeuroFocus is the first thing that actually works with how my brain functions instead of asking me to override it. Week 3 I started a project I'd been avoiding for four months."</div>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="test-avatar">P</div>
+      <div class="test-body">
+        <div class="test-name">Priya R.</div>
+        <div class="test-meta">Software Engineer, Austin · Verified Purchase</div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"Day 14. I'm not going to pretend I'm cured. But I started three things this week that have been on my list for two months. I don't know how to explain it except this: the freeze is slower now. And when it comes, I know what to do."</div>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="test-avatar">C</div>
+      <div class="test-body">
+        <div class="test-name">Cara J.</div>
+        <div class="test-meta">Product Manager, London · Verified Purchase</div>
+        <div class="test-stars">★★★★★</div>
+        <div class="test-text">"I kept thinking the problem was my system. NeuroFocus helped me understand the problem was never the system — it was the neural pattern underneath every system I tried. That shift alone was worth it."</div>
+      </div>
+    </div>
+
+    <!-- FREEZE TYPES SECTION -->
+    <div class="freeze-section">
+      <div class="freeze-title">Which Type of Executive Freeze Is Holding You Back?</div>
+      <div class="freeze-sub">Dr. Hoffmann's research identified 6 distinct freeze patterns. Your NeuroFocus plan is built around your specific type — not a generic protocol.</div>
+      <div class="freeze-grid">
+        <div class="freeze-card">
+          <div class="freeze-icon">🎯</div>
+          <div class="freeze-name">Perfectionism Freeze</div>
+          <div class="freeze-desc">Can't start because it needs to be perfect first. You research, plan, and outline — everything except actually doing it.</div>
+        </div>
+        <div class="freeze-card">
+          <div class="freeze-icon">🌊</div>
+          <div class="freeze-name">Overwhelm Freeze</div>
+          <div class="freeze-desc">The task feels so large that every entry point seems wrong. You can see everything at once — and do nothing.</div>
+        </div>
+        <div class="freeze-card">
+          <div class="freeze-icon">🔁</div>
+          <div class="freeze-name">Shame Spiral Freeze</div>
+          <div class="freeze-desc">Every previous failed attempt makes the next one feel more dangerous. The weight of "I should have done this already" blocks the start.</div>
+        </div>
+        <div class="freeze-card">
+          <div class="freeze-icon">🔀</div>
+          <div class="freeze-name">Decision Freeze</div>
+          <div class="freeze-desc">Too many ways to approach the task means you choose none of them. Analysis becomes permanent paralysis.</div>
+        </div>
+        <div class="freeze-card">
+          <div class="freeze-icon">⚡</div>
+          <div class="freeze-name">Energy Freeze</div>
+          <div class="freeze-desc">Your brain needs an activation signal before it can initiate. Without it, even simple tasks feel neurologically impossible to start.</div>
+        </div>
+        <div class="freeze-card">
+          <div class="freeze-icon">🔄</div>
+          <div class="freeze-name">Transition Freeze</div>
+          <div class="freeze-desc">Switching between tasks requires a full mental restart you can never seem to trigger on demand. You stay stuck on the last thing — or nothing.</div>
+        </div>
+      </div>
+      <p class="freeze-note">Most people have a primary freeze type and a secondary one that surfaces under stress or deadline pressure. The 2-minute quiz identifies yours — and your NeuroFocus plan is calibrated to interrupt your specific pattern first.</p>
+      <a href="QUIZ_URL_HERE" class="cta-btn-teal">TAKE THE FREE QUIZ — DISCOVER YOUR FREEZE TYPE</a>
+    </div>
+
+    <div class="guarantee-strip">
+      <div class="guarantee-label">Your purchase is protected</div>
+      <div class="guarantee-items">
+        <div class="guarantee-item">
+          <img src="images/badge-guarantee.webp" alt="Full Refund — 14-Day Guarantee, No Questions Asked" class="guarantee-badge-img" />
+        </div>
+        <div class="guarantee-item">
+          <img src="images/badge-cancel.webp" alt="Cancel Anytime — One Click, No Hoops" class="guarantee-badge-img" />
+        </div>
+        <div class="guarantee-item">
+          <img src="images/badge-no-charges.webp" alt="No Hidden Charges — Renewal Reminder 7 Days Before" class="guarantee-badge-img" />
+        </div>
+      </div>
+    </div>
+
+    <div class="urgency-box" id="offerTrigger">
+      <strong>🔥 IMPORTANT</strong>
+      The 50% discount for new users is only available while current onboarding capacity lasts. The last time this offer ran, spots filled within 72 hours.
+    </div>
+
+    <div class="comments-section">
+      <div class="comments-title">Comments (9)</div>
+
+      <div class="comment">
+        <div class="c-avatar">KR</div>
+        <div class="c-body">
+          <div class="c-handle">@KarenR_Chicago</div>
+          <div class="c-text">This is the first article that accurately described what actually happens in my head. I've been calling it "can't start syndrome" for four years. Took the quiz, the results were uncomfortably accurate. Starting the plan today.</div>
+          <div class="c-likes">👍 847 likes · Reply</div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="c-avatar">SP</div>
+        <div class="c-body">
+          <div class="c-handle">@SkepticalProductivityNerd</div>
+          <div class="c-text">I've read every productivity book written in the last 10 years. None of them helped long-term. Tried this because of the 14-day refund — nothing to lose. Week 2. Something is genuinely different. I started three things this week without the usual internal negotiation.</div>
+          <div class="c-likes">👍 612 likes · Reply</div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="c-avatar">MT</div>
+        <div class="c-body">
+          <div class="c-handle">@MiaT_Marketing</div>
+          <div class="c-text">I'm Mia — yes, the testimonial in the article is real, and yes I know how it looks when the person in the testimonial shows up in the comments. I genuinely don't care. This changed how I work. Take the quiz.</div>
+          <div class="c-likes">👍 1,203 likes · Reply</div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="c-avatar">TN</div>
+        <div class="c-body">
+          <div class="c-handle">@TherapistAndADHDer</div>
+          <div class="c-text">As someone who is both a licensed therapist AND has executive dysfunction — the behavioral activation approach described here is legitimate applied research. The app simplifies and delivers it well. This isn't pseudoscience. The mechanism is real and the research base is solid.</div>
+          <div class="c-likes">👍 2,107 likes · Reply</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="disclaimer">
+      <strong>MEDICAL &amp; HEALTH DISCLAIMER:</strong> The information on this page is for educational and informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. NeuroFocus is not a diagnostic tool and does not diagnose, treat, or cure ADHD or any other condition. If you have concerns about attention, executive function, or mental health, please consult a licensed healthcare professional. Individual results may vary.
+    </div>
+
+  </div>
+</main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar-col">
+  <div class="sidebar-sticky">
+    <div class="sb-card">
+      <span class="sb-fire">🔥</span>
+      <div class="sb-limited">LIMITED TIME OFFER</div>
+      <div class="sb-discount">MAJOR DISCOUNT: 50% OFF</div>
+      <div class="sb-new-users">New Users Only</div>
+
+      <a href="QUIZ_URL_HERE" class="sb-btn">GET YOUR 50% DISCOUNT TODAY</a>
+
+      <div class="sb-reviews-title">Customer Reviews</div>
+      <div class="sb-out-of">4.8 out of 5</div>
+      <div class="sb-stars">★★★★★</div>
+      <div class="sb-count">4,552 customer ratings</div>
+
+      <div class="star-row">
+        <span class="star-lbl">5 Stars</span>
+        <div class="star-bar"><div class="star-fill" style="width:90%"></div></div>
+        <span class="star-pct">90%</span>
+      </div>
+      <div class="star-row">
+        <span class="star-lbl">4 Stars</span>
+        <div class="star-bar"><div class="star-fill" style="width:7%"></div></div>
+        <span class="star-pct">7%</span>
+      </div>
+      <div class="star-row">
+        <span class="star-lbl">3 Stars</span>
+        <div class="star-bar"><div class="star-fill" style="width:2%"></div></div>
+        <span class="star-pct">2%</span>
+      </div>
+      <div class="star-row">
+        <span class="star-lbl">2 Stars</span>
+        <div class="star-bar"><div class="star-fill" style="width:0%"></div></div>
+        <span class="star-pct">0%</span>
+      </div>
+      <div class="star-row">
+        <span class="star-lbl">1 Star</span>
+        <div class="star-bar"><div class="star-fill" style="width:1%"></div></div>
+        <span class="star-pct">1%</span>
+      </div>
+
+      <div class="sb-features">
+        <div class="sb-feat-title">By Feature</div>
+        <div class="feat-row">
+          <span class="feat-lbl">Effectiveness</span>
+          <span><span class="feat-stars">★★★★★</span> <span class="feat-score">5.0</span></span>
+        </div>
+        <div class="feat-row">
+          <span class="feat-lbl">Ease of Use</span>
+          <span><span class="feat-stars">★★★★★</span> <span class="feat-score">5.0</span></span>
+        </div>
+        <div class="feat-row">
+          <span class="feat-lbl">Value</span>
+          <span><span class="feat-stars">★★★★★</span> <span class="feat-score">5.0</span></span>
+        </div>
+        <div class="feat-row">
+          <span class="feat-lbl">Support</span>
+          <span><span class="feat-stars">★★★★★</span> <span class="feat-score">5.0</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+</div>
+
+<!-- FLOATING BOTTOM BAR — appears when reader reaches the urgency box -->
+<div class="floating-bar" id="floatingBar">
+  <span class="floating-bar-text">Claim Your 50% Discount — Today Only</span>
+  <a href="QUIZ_URL_HERE" class="floating-bar-btn">TAKE THE FREE QUIZ</a>
+  <button class="floating-bar-close" onclick="document.getElementById('floatingBar').style.display='none'" aria-label="Close">×</button>
+</div>
+
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','YOUR_PIXEL_ID_HERE');
+fbq('track','PageView');
+document.querySelectorAll('a[href="QUIZ_URL_HERE"]').forEach(function(b){
+  b.addEventListener('click',function(){ fbq('track','Quiz_Start'); });
+});
+
+// Floating bar triggers when urgency box scrolls into view
+(function(){
+  var bar = document.getElementById('floatingBar');
+  var trigger = document.getElementById('systemsSection');
+  if (!bar || !trigger) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { bar.style.display = 'flex'; obs.disconnect(); }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(trigger);
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"/></noscript>
+
+</body>
+</html>
